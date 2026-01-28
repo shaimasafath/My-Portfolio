@@ -71,6 +71,20 @@ fica<!DOCTYPE html>
       font-size: 18px;
       margin: 15px 0;
     }
+    .quick-facts {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.quick-facts div {
+  background: #f3f3f3;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
     .btn {
       display: inline-block;
       padding: 10px 20px;
@@ -102,17 +116,61 @@ fica<!DOCTYPE html>
   display: block;
   margin-bottom: 5px;
 }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
 
-    .certificate-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .certificate-gallery img {
-      max-width: 200px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+.gallery-grid img {
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.08);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+    .fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+    .btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+
+
+    
     footer {
       text-align: center;
       padding: 20px;
@@ -120,6 +178,37 @@ fica<!DOCTYPE html>
     }
   </style>
 </head>
+  <script>
+  // Scroll Fade-In
+  const faders = document.querySelectorAll('.fade-in');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  });
+
+  faders.forEach(el => observer.observe(el));
+
+  // Lightbox
+  const images = document.querySelectorAll('.gallery-grid img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  images.forEach(img => {
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
+
 <body>
   <header>
     <div ><strong>My Portfolio</strong></div>
@@ -145,13 +234,22 @@ fica<!DOCTYPE html>
 
     </div>
   </div>
+  <div class="intro">
 
-  <section id="about">
+
+  <div> Languages: HTML, CSS, JavaScript, Java, MY SQL </div>
+  <div> Interests: UI Design, Web Animations, Software Developing </div>
+  <div> Hobbies: Reading Novels, Listening Music </div>
+</div>
+
+
+
+  <section id="about" class="fade-in" >
     <h2>About Me</h2>
     <p>I'm a student interested in learning full stack development and contributing to tech communities. My ambition is to work in a creative and challenging environment where I can continue growing technically and personally.</p>
   </section>
 
-  <section id="projects">
+  <section id="projects" class="fade-in">
     <h2>Projects</h2>
     <div class="project">
       <strong>Resume Parser</strong>
@@ -163,7 +261,7 @@ fica<!DOCTYPE html>
     
   </section>
 
-  <section id="skills">
+  <section id="skills" class="fade-in">
     <h2>Skills</h2>
     <ul>
       <li>HTML, CSS, JavaScript</li>
@@ -173,32 +271,23 @@ fica<!DOCTYPE html>
     </ul>
   </section>
 
-  <section id="certifications">
+  <section id="certifications" class="fade-in">
     <h2>Certifications</h2><b><ol>
     <li><div class="cert">SERVICENOW-Certified System Administrator</div></li>
-    <a href="certificates/Servicenow CSA.png"target="_blank">
-  <img src="certificates/Servicenow CSA.png"alt="Certificate 1" width="200px" />
-</a>
+       <div class="gallery-grid">
+    <img src="certificates/Servicenow CSA.png" alt="">
+    <img src="certificates/Linguaskills.png" alt="">
+    <img src="certificates/codetantra.png" alt="">
+    <img src="certificates/AICTE.png" alt="">
+  </div>
+</section>
 
-    <li><div class="cert">Linguaskill English Certification – B2 Level(CEFR) by Cambridge English</div></li>
-    <a href="certificates\Linguaskills.png" target="_blank">
-  <img src="certificates\Linguaskills.png" alt="Certificate 1" width="200px" />
-</a>
-    <li><div class="cert">Java Programming Certificate-Codetantra</div></li>
-    <a href="certificates\codetantra.png" target="_blank">
-  <img src="certificates\codetantra.png"alt="Certificate 1" width="200px" />
-</a>
-    <li><div class="cert">Java Full Stack Developer-AICTE</div></li>
-    <a href="certificates\AICTE.png" target="_blank">
-  <img src="certificates\AICTE.png" alt="Certificate 1" width="200px" />
-</a>
-    <li><div class="cert">English Strokes – Basic to Intermediate Level by British Council</div></li>
-    <a href="certificates\British council.png" target="_blank">
-  <img src="certificates\British council.png" alt="Certificate 1" width="200px" />
-</a>
-  </section>
-
-  <section id="contact">
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <img id="lightbox-img">
+</div>
+    
+  <section id="contact" class="fade-in">
     <h2>Contact</h2>
     <div class="contact-info">
       Email: <a href="mailto:shaimasafath@gmail.com">shaimasafath@gmail.com</a><br />
@@ -216,6 +305,7 @@ fica<!DOCTYPE html>
   </footer>
 </body>
 </html>
+
 
 
 
