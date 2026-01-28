@@ -1,9 +1,10 @@
-fica<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Portfolio</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,26 +13,22 @@ fica<!DOCTYPE html>
       background-color: #f8f8f8;
       color: #333;
     }
+
+    /* Sticky Header */
     header {
       background-color: #fff;
       padding: 20px 40px;
-      font-size: 36px;
+      font-size: 28px;
       display: flex;
-      position: sticky;
-  top: 0;
-  z-index: 1000;
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       font-weight: bold;
-  font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    header, nav, .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #fff; /* important so content doesn’t show through */
-}
 
     nav a {
       margin-left: 20px;
@@ -39,51 +36,42 @@ fica<!DOCTYPE html>
       text-decoration: none;
       font-weight: 500;
     }
+
     nav a:hover {
       color: #007acc;
     }
+
     .container {
       max-width: 1100px;
       margin: 40px auto;
       padding: 0 20px;
       display: flex;
-      gap: 0;
-      align-items: left;
+      gap: 20px;
+      align-items: center;
     }
+
     .profile {
       flex: 1;
     }
+
     .profile img {
-      width: 80%;
+      width: 100%;
       border-radius: 12px;
-      padding: 0;
-      margin: 0;
-      
     }
+
     .intro {
-      flex: 4;
+      flex: 3;
     }
+
     .intro h1 {
       font-size: 36px;
       margin: 0;
     }
+
     .intro p {
       font-size: 18px;
       margin: 15px 0;
     }
-    .quick-facts {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-  flex-wrap: wrap;
-}
-
-.quick-facts div {
-  background: #f3f3f3;
-  padding: 8px 14px;
-  border-radius: 20px;
-  font-size: 14px;
-}
 
     .btn {
       display: inline-block;
@@ -94,12 +82,36 @@ fica<!DOCTYPE html>
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+      margin-right: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Quick Facts */
+    .quick-facts {
+      display: flex;
+      gap: 12px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .quick-facts div {
+      background: #f3f3f3;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
     section {
       margin: 40px auto;
       max-width: 1100px;
       padding: 0 20px;
     }
+
     section h2 {
       font-size: 24px;
       border-bottom: 2px solid #ddd;
@@ -107,78 +119,177 @@ fica<!DOCTYPE html>
       margin-bottom: 20px;
       color: #007acc;
     }
-    ul, .project, .cert,  .contact-info {
-      margin-bottom: 15px;
-      
-    }
+
     .project strong {
-  font-size: 20px; 
-  display: block;
-  margin-bottom: 5px;
-}
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-}
+      font-size: 20px;
+      display: block;
+      margin-bottom: 5px;
+    }
 
-.gallery-grid img {
-  width: 100%;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.4s ease;
-}
-
-.gallery-grid img:hover {
-  transform: scale(1.08);
-}
-
-/* Lightbox */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.8);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-}
-    .fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.fade-in.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-    .btn {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-}
-
-
-
-    
     footer {
       text-align: center;
       padding: 20px;
       background-color: #eee;
     }
+
+    /* Fade-in Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.08);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
   </style>
 </head>
-  <script>
+
+<body>
+
+<header>
+  <div><strong>My Portfolio</strong></div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="container fade-in">
+  <div class="profile">
+    <img src="images/1.jpg" alt="Student Photo" />
+  </div>
+
+  <div class="intro">
+    <h1>Hello, I'm S. Shaima Safath</h1>
+    <p>A computer science student with a passion for programming and problem-solving.</p>
+
+    <a href="Shaima Safath_CSE_GPCET.pdf" class="btn" target="_blank">View Resume</a>
+    <a href="Shaima Safath_CSE_GPCET.pdf" class="btn" download>Download Resume</a>
+
+    <div class="quick-facts">
+      <div>💻 Role: Frontend Intern Aspirant</div>
+      <div>🌐 Languages: HTML, CSS, JavaScript</div>
+      <div>🎯 Interests: UI Design, Web Animations</div>
+    </div>
+  </div>
+</div>
+
+<section id="about" class="fade-in">
+  <h2>About Me</h2>
+  <p>
+    I'm a student interested in learning full stack development and contributing to tech communities.
+    My ambition is to work in a creative and challenging environment where I can continue growing technically and personally.
+  </p>
+</section>
+
+<section id="projects" class="fade-in">
+  <h2>Projects</h2>
+  <div class="project">
+    <strong>Resume Parser</strong>
+    The Resume Parser application automates extraction of key resume data and evaluates compatibility with job descriptions.
+    <br><br>
+    <a href="https://github.com/shaimasafath/Resume-Parser">GitHub Link</a>
+  </div>
+</section>
+
+<section id="skills" class="fade-in">
+  <h2>Skills</h2>
+  <ul>
+    <li>HTML, CSS, JavaScript</li>
+    <li>Java, Python (Basics)</li>
+    <li>DSA (Basics)</li>
+    <li>MySQL</li>
+    <li>Git, Postman, VS Code</li>
+  </ul>
+</section>
+
+<section id="certifications" class="fade-in">
+  <h2>Certifications</h2>
+  <ul>
+    <li>SERVICENOW - Certified System Administrator</li>
+    <li>Linguaskill English Certification – B2 (CEFR)</li>
+    <li>Java Programming Certificate - Codetantra</li>
+    <li>Java Full Stack Developer - AICTE</li>
+    <li>English Strokes - British Council</li>
+  </ul>
+</section>
+
+<!-- INTERACTIVE GALLERY -->
+<section id="gallery" class="fade-in">
+  <h2>Gallery</h2>
+  <p>My achievements & learning journey</p>
+
+  <div class="gallery-grid">
+    <img src="certificates/Servicenow CSA.png" alt="">
+    <img src="certificates/Linguaskills.png" alt="">
+    <img src="certificates/codetantra.png" alt="">
+    <img src="certificates/AICTE.png" alt="">
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+  <img id="lightbox-img">
+</div>
+
+<section id="contact" class="fade-in">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:shaimasafath@gmail.com">shaimasafath@gmail.com</a></p>
+  <p>Phone: +91-8520938828</p>
+
+  <ul>
+    <li><a href="https://github.com/shaimasafath">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/s-shaima-safath-456b72259/">LinkedIn</a></li>
+  </ul>
+</section>
+
+<footer>
+  &copy; 2025 Shaima Safath. All rights reserved.
+</footer>
+
+<!-- JavaScript -->
+<script>
   // Scroll Fade-In
   const faders = document.querySelectorAll('.fade-in');
 
@@ -209,109 +320,5 @@ fica<!DOCTYPE html>
   });
 </script>
 
-<body>
-  <header>
-    <div ><strong>My Portfolio</strong></div>
-    <nav>
-      <a href="#intro">Intro</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <div class="container">
-    <div class="profile">
-      <img src="images/1.jpg" alt="Student Photo" />
-    </div>
-    <div class="intro">
-      <h1>Hello, I'm S.Shaima Safath</h1>
-      <p>A computer science student with a passion for programming and problem-solving.</p>
-      <a href="Shaima Safath_CSE_GPCET.pdf" class="btn" target="_blank">View Resume</a>
-<a href="Shaima Safath_CSE_GPCET.pdf" class="btn" download>Download Resume</a>
-      
-
-    </div>
-  </div>
-  <div class="intro">
-
-
-  <div> Languages: HTML, CSS, JavaScript, Java, MY SQL </div>
-  <div> Interests: UI Design, Web Animations, Software Developing </div>
-  <div> Hobbies: Reading Novels, Listening Music </div>
-</div>
-
-
-
-  <section id="about" class="fade-in" >
-    <h2>About Me</h2>
-    <p>I'm a student interested in learning full stack development and contributing to tech communities. My ambition is to work in a creative and challenging environment where I can continue growing technically and personally.</p>
-  </section>
-
-  <section id="projects" class="fade-in">
-    <h2>Projects</h2>
-    <div class="project">
-      <strong>Resume Parser</strong>
-      
-      The
- Resume Parser application is designed to automate the extraction of key information from uploaded resumes, providing a efficient and accurate way to identify top candidates. Additionally, the system evaluates the compatibility of the uploaded resume with a given job description , shortlisting the resume and reducing the time spent on manual screening.<br />
-      <br><a href="https://github.com/shaimasafath/Resume-Parser">GitHub Link</a>
-    </div>
-    
-  </section>
-
-  <section id="skills" class="fade-in">
-    <h2>Skills</h2>
-    <ul>
-      <li>HTML, CSS, JavaScript</li>
-      <li>Java, Python(Basics)</li><li>DSA(Basics)</li>
-      <li>My SQL</li>
-      <li>Git, Postman, VS Code</li>
-    </ul>
-  </section>
-
-  <section id="certifications" class="fade-in">
-    <h2>Certifications</h2><b><ol>
-    <li><div class="cert">SERVICENOW-Certified System Administrator</div></li>
-       <div class="gallery-grid">
-    <img src="certificates/Servicenow CSA.png" alt="">
-    <img src="certificates/Linguaskills.png" alt="">
-    <img src="certificates/codetantra.png" alt="">
-    <img src="certificates/AICTE.png" alt="">
-  </div>
-</section>
-
-<!-- Lightbox -->
-<div id="lightbox" class="lightbox">
-  <img id="lightbox-img">
-</div>
-    
-  <section id="contact" class="fade-in">
-    <h2>Contact</h2>
-    <div class="contact-info">
-      Email: <a href="mailto:shaimasafath@gmail.com">shaimasafath@gmail.com</a><br />
-      Phone: +91-8520938828
-    </div>
-    <ul>
-      <li><a href="https://github.com/shaimasafath">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/s-shaima-safath-456b72259/">LinkedIn</a></li>
-     
-    </ul>
-  </section>
-
-  <footer>
-    &copy; 2025 Shaima Safath. All rights reserved.
-  </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
